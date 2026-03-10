@@ -1,3 +1,5 @@
+name: chome
+
 include:
   - path: ./compose/postgres/docker-compose.yml
   - path: ./compose/redis/docker-compose.yml
