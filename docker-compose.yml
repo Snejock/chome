@@ -3,7 +3,7 @@ name: chome
 include:
   - path: ./compose/postgres/docker-compose.yml
   - path: ./compose/redis/docker-compose.yml
-  # - path: ./compose/nextcloud/docker-compose.yml
+  - path: ./compose/nextcloud/docker-compose.yml
   # - path: ./compose/npm/docker-compose.yml
   # - path: ./compose/jellyfin/docker-compose.yml
   # - path: ./compose/homeassistant/docker-compose.yml
