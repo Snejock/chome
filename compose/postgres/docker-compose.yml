@@ -12,11 +12,12 @@ services:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_DATABASE}
+      PGDATA: /var/lib/postgresql/data/pgdata
     command:
       - -c
       - listen_addresses=*
     volumes:
-      - ch-pg-1-data:/var/lib/postgresql/data
+      - ch-pg-1-data:/var/lib/postgresql/data/pgdata
     healthcheck:
       test: [ 'CMD-SHELL', 'pg_isready -U ${PG_USER} -d ${PG_DATABASE} -h 127.0.0.1 -p 5432' ]
       interval: 30s
