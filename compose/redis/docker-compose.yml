@@ -1,0 +1,22 @@
+services:
+  ch-redis-1:
+    image: redis:8.6.1-trixie
+    container_name: ch-redis-1
+    restart: unless-stopped
+    networks:
+      - ch-net
+    ports:
+      - '26379:6379'
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'PING']
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  ch-redis-1-data:
+    name: ch-redis-1-data
+    external: false
