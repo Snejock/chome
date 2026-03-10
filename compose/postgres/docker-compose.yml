@@ -28,4 +28,4 @@ services:
 volumes:
   ch-pg-1-data:
     name: ch-pg-1-data
-    external: false
+    external: true
