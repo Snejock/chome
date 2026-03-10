@@ -1,0 +1,32 @@
+services:
+  ch-nextcloud:
+    image: nextcloud:33.0.0-apache
+    container_name: ch_nextcloud
+    restart: unless-stopped
+    networks:
+      - ch-net
+    ports:
+      - '28080:80'
+    depends_on:
+      ch-pg-1:
+        condition: service_healthy
+      ch-redis-1:
+        condition: service_healthy
+    volumes:
+      - ch-nextcloud-data:/var/www/html
+      - /media/data/storage:/media/storage
+    environment:
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.chome.pro odin:28080
+      - POSTGRES_DB=${PG_DATABASE}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_HOST=${PG_HOST}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_HOST_PORT=${REDIS_PORT}
+    extra_hosts:
+      - 'cloud.chome.pro:172.17.0.1'
+
+volumes:
+  ch-nextcloud-data:
+    name: ch-nextcloud-data
+    external: false
