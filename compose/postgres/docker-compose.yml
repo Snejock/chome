@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:17.5-bookworm
+    container_name: chome_postgres
+    restart: unless-stopped
+    shm_size: 128mb
+    networks:
+      - chome-net
+    ports:
+      - '0.0.0.0:25432:5432'
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    command:
+      - -c
+      - listen_addresses=*
+    volumes:
+      - /mnt/data/projects/chome/volumes/postgres/data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U ${PG_USER} -d ${PG_DATABASE} -h 127.0.0.1 -p 5432' ]
+      interval: 10s
+      retries: 5
+      start_period: 10s
