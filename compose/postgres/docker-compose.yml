@@ -1,13 +1,13 @@
 services:
-  postgres:
-    image: postgres:17.5-bookworm
-    container_name: chome_postgres
+  ch-pg-1:
+    image: postgres:18.3-trixie
+    container_name: ch-pg-1
     restart: unless-stopped
     shm_size: 128mb
     networks:
-      - chome-net
+      - ch-net
     ports:
-      - '0.0.0.0:25432:5432'
+      - '25432:5432'
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
@@ -16,9 +16,15 @@ services:
       - -c
       - listen_addresses=*
     volumes:
-      - /mnt/data/projects/chome/volumes/postgres/data:/var/lib/postgresql/data
+      - ch-pg-1-data:/var/lib/postgresql/data
     healthcheck:
       test: [ 'CMD-SHELL', 'pg_isready -U ${PG_USER} -d ${PG_DATABASE} -h 127.0.0.1 -p 5432' ]
-      interval: 10s
+      interval: 30s
+      timeout: 5s
       retries: 5
-      start_period: 10s
+      start_period: 30s
+
+volumes:
+  ch-pg-1-data:
+    name: ch-pg-1-data
+    external: false
