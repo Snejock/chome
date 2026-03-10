@@ -19,4 +19,4 @@ services:
 volumes:
   ch-redis-1-data:
     name: ch-redis-1-data
-    external: false
+    external: true
