@@ -1,0 +1,27 @@
+services:
+  ch-adguard:
+    image: adguard/adguardhome:v0.107.73
+    container_name: ch-adguard
+    restart: unless-stopped
+    networks:
+      - ch-net
+    # dns:
+    #   - 192.168.1.10
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - ch-adguard-data:/opt/adguardhome
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - '29080:80/tcp'
+      - '29443:443/tcp'
+      - '29443:443/udp'
+      - '29300:3000/tcp'
+
+volumes:
+  ch-adguard-data:
+    name: ch-adguard-data
+    external: false
