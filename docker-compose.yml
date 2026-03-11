@@ -5,11 +5,11 @@ include:
   - path: ./compose/redis/docker-compose.yml
   - path: ./compose/nextcloud/docker-compose.yml
   - path: ./compose/npm/docker-compose.yml
+  - path: ./compose/adguard/docker-compose.yml
   # - path: ./compose/jellyfin/docker-compose.yml
   # - path: ./compose/homeassistant/docker-compose.yml
   # - path: ./compose/jackett/docker-compose.yml
   # - path: ./compose/prowlarr/docker-compose.yml
-  # - path: ./compose/adguard/docker-compose.yml
   # - path: ./compose/plex/docker-compose.yml
 
 networks:
