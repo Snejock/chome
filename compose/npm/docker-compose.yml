@@ -17,4 +17,4 @@ services:
 volumes:
   ch-npm-data:
     name: ch-npm-data
-    external: false
+    external: true
