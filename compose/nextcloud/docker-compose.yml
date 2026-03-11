@@ -1,7 +1,7 @@
 services:
   ch-nextcloud:
     image: nextcloud:33.0.0-apache
-    container_name: ch_nextcloud
+    container_name: ch-nextcloud
     restart: unless-stopped
     networks:
       - ch-net
