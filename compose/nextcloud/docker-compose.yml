@@ -29,4 +29,4 @@ services:
 volumes:
   ch-nextcloud-data:
     name: ch-nextcloud-data
-    external: false
+    external: true
