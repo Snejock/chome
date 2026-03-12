@@ -14,7 +14,7 @@ services:
         condition: service_healthy
     volumes:
       - ch-nextcloud-data:/var/www/html
-      - /media/data/storage:/media/storage
+      - /media/nas:/media/storage
     environment:
       - NEXTCLOUD_TRUSTED_DOMAINS=cloud.chome.pro odin:28080
       - POSTGRES_DB=${PG_DATABASE}
