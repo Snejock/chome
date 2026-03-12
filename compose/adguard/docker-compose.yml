@@ -24,4 +24,4 @@ services:
 volumes:
   ch-adguard-data:
     name: ch-adguard-data
-    external: false
+    external: true
