@@ -1,0 +1,27 @@
+services:
+  ch-plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: ch-plex
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - VERSION=docker
+      - PLEX_CLAIM=claim-ncUTNB6hFwMWvcFsy3e6  # Получить claim можно на https://www.plex.tv/claim
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+    volumes:
+      - /media/data/projects/chome/compose/plex/config:/config
+      - /media/nas/multimedia/movies:/movies
+      - /media/nas/multimedia/music:/music
+      - /media/nas/multimedia/photos:/photos
+      - /media/nas/multimedia/tvshows:/tvshows
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
