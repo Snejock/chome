@@ -12,6 +12,8 @@ services:
     environment:
       - 'OLLAMA_BASE_URL=http://loki:31434'
       - 'WEBUI_SECRET_KEY='
+    extra_hosts:
+      - 'loki:192.168.1.15'
 
 volumes:
   ch-webui-data:
