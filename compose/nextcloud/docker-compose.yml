@@ -14,7 +14,7 @@ services:
         condition: service_healthy
     volumes:
       - ch-nextcloud-data:/var/www/html
-      - /media/data/projects/chome/compose/nextcloud/config/config.php:/var/www/html/config/config.php
+      # - /media/data/projects/chome/compose/nextcloud/config/config.php:/var/www/html/config/config.php
       - /media/nas:/media/storage
     environment:
       - NEXTCLOUD_TRUSTED_DOMAINS=cloud.chome.pro odin:28080
