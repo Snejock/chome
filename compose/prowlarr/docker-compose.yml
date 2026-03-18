@@ -1,0 +1,18 @@
+services:
+  ch-prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: ch-prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - ch-prowlarr-data:/config
+    ports:
+      - 29696:9696
+
+volumes:
+  ch-prowlarr-data:
+    name: ch-prowlarr-data
+    external: false

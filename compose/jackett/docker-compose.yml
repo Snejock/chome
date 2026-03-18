@@ -1,0 +1,21 @@
+services:
+  ch-jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: ch-jackett
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - AUTO_UPDATE=true
+      - RUN_OPTS=
+    volumes:
+      - ch-jackett-data:/config
+      - /media/nas/download:/downloads
+    ports:
+      - 29117:9117
+
+volumes:
+  ch-jackett-data:
+    name: ch-jackett-data
+    external: false

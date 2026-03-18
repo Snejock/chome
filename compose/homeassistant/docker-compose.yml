@@ -1,0 +1,21 @@
+services:
+  ch-homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: ch-homeassistant
+    restart: unless-stopped
+    network_mode: host
+#    ports:
+#      - '28123:8123'
+#    networks:
+#      - ch-net
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - ch-homeassistant-data:/config
+
+volumes:
+  ch-homeassistant-data:
+    name: ch-homeassistant-data
+    external: false

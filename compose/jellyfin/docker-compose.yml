@@ -1,0 +1,40 @@
+services:
+  ch-jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: ch-jellyfin
+    restart: unless-stopped
+    networks:
+      - ch-net
+    # dns:
+    #   - 192.168.1.10
+    runtime: nvidia
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - JELLYFIN_PublishedServerUrl=http://192.168.1.10
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      - ch-jellyfin-data:/config
+      - /media/nas/multimedia/tvshows:/data/tvshows
+      - /media/nas/multimedia/movies:/data/movies
+      - /media/nas/multimedia/music:/data/music
+      - /media/nas/multimedia/photos:/data/photos
+    ports:
+      - 28096:8096
+      - 28920:8920
+      - 7359:7359/udp
+      - 1900:1900/udp
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  ch-jellyfin-data:
+    name: ch-jellyfin-data
+    external: false
