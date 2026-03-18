@@ -17,7 +17,7 @@ services:
       - -c
       - listen_addresses=*
     volumes:
-      - ch-pg-1-data:/var/lib/postgresql/data/pgdata
+      - ch-pg-1-data:/var/lib/postgresql/data
     healthcheck:
       test: [ 'CMD-SHELL', 'pg_isready -U ${PG_USER} -d ${PG_DATABASE} -h 127.0.0.1 -p 5432' ]
       interval: 30s
