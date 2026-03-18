@@ -18,4 +18,4 @@ services:
 volumes:
   ch-webui-data:
     name: ch-webui-data
-    external: false
+    external: true
