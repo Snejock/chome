@@ -1,6 +1,7 @@
 name: chome
 
 include:
+  - path: ./compose/389ds/docker-compose.yml
   - path: ./compose/postgres/docker-compose.yml
   - path: ./compose/redis/docker-compose.yml
   - path: ./compose/nextcloud/docker-compose.yml
